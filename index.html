@@ -7,8 +7,6 @@
             src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
-    <script type="text/javascript" src="buscaflores.js"></script>
-    
     <link rel="icon" href="Imagenes/IconoCabecera.png" />
     <title>BUSCAFLORECITAS</title>
 </head>
@@ -45,6 +43,13 @@
             <a name="tablero"> </a>
             <div class="tablero">          
             </div>
+            <div id="numMinas">
+                <label for="minas"><h2>Ingrese el numero de minas para jugar:</h2></label>
+                <br>
+                <input type="text" name="minas" id="minas" placeholder="0">
+                <br>
+                <input type="button" value="Ingresar Minas" id="setMinas">
+            </div>
             <a name="partidas">
                 <div class="partidas">
                     <div class="partidasTotales">
@@ -69,9 +74,12 @@
             </a>
         </div>
     </div>
+    <script type="text/javascript" src="buscaflores.js"></script>
     <script>
+        setMinas();
         iniciarBotones();
         puntos();
+        hideTablero();
     </script>   
 </body>
 </html>

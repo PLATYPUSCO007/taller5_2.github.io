@@ -2,10 +2,10 @@ var tablero = [[],[],[],[],[],[],[],[],[],[]];
 var visible = [[],[],[],[],[],[],[],[],[],[]];
 var rec =[];
 
-
-
 var per=0,gan=0,jug=0;
+var cant_minas=0;
 var ini,fin;
+
 if(localStorage.getItem("perdidas")!=null){
     per=localStorage.getItem("perdidas");
 }
@@ -19,23 +19,28 @@ if(localStorage.getItem("record")!=null){
     rec=JSON.parse(localStorage.getItem("record"));
 }
 
+function hideTablero() {
+    $('.tablero').children().prop('disabled', true);
+}
+
+function setMinas(){
+    $('#setMinas').on('click', (e)=>{
+        e.preventDefault();
+        cant_minas = $('#minas').val();
+        if (cant_minas > 0){
+            $('.tablero').children().prop('disabled', false);
+            ponerMinas();
+        }
+    });
+}
 
 function max(num1,num2){
-    if(num1>num2){
-        return num1;
-    }
-    else{
-        return num2;
-    }
+    return (num1>num2) ? num1 : num2;
 }
 function min(num1,num2){
-    if(num1<num2){
-        return num1;
-    }
-    else{
-        return num2;
-    }
+    return (num1<num2) ? num1 : num2;
 }
+
 function iniciarTablero(){
     for(i=0;i<10;i++){
         for(j=0;j<10;j++){
@@ -43,11 +48,11 @@ function iniciarTablero(){
             visible[i][j]=false;
         }
     }
-    ponerMinas();
 }
+
 function ponerMinas(){
     minas = 0;
-    while(minas<10){
+    while(minas<cant_minas){
         while(true){
             fila=Math.floor(Math.random()*(10-0));
             colu=Math.floor(Math.random()*(10-0));
